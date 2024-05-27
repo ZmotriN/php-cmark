@@ -84,11 +84,7 @@ void php_cmark_node_text_write(zval *object, zval *member, zval *value, void **r
 	if (EXPECTED(rtc)) {
 		if (RTC(rtc, cmark_node_set_literal)) {
 			php_cmark_assert_type(value, IS_STRING, 0, 
-#if PHP_VERSION_ID >= 70400
                 return &EG(uninitialized_zval),
-#else
-                return,
-#endif
 				"literal expected to be string");
 
 			php_cmark_node_write_str(&n->h, cmark_node_set_literal, value, &n->literal);
@@ -103,11 +99,7 @@ void php_cmark_node_text_write(zval *object, zval *member, zval *value, void **r
 	if (Z_TYPE_P(member) == IS_STRING) {
 		if (zend_string_equals_literal(Z_STR_P(member), "literal")) {
 			php_cmark_assert_type(value, IS_STRING, 0, 
-#if PHP_VERSION_ID >= 70400
                 return &EG(uninitialized_zval),
-#else
-                return,
-#endif
 				"literal expected to be string");
 
 			php_cmark_node_write_str(&n->h, 

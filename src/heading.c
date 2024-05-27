@@ -84,11 +84,7 @@ void php_cmark_node_heading_write(zval *object, zval *member, zval *value, void 
 		if (RTC(rtc, cmark_node_set_heading_level)) {
 			php_cmark_assert_type(
 				value, IS_LONG, 0, 
-#if PHP_VERSION_ID >= 70400
                 return &EG(uninitialized_zval),
-#else
-                return,
-#endif
                 "level expected to be int");
 			php_cmark_node_write_int(&n->h, 
 				cmark_node_set_heading_level, value, &n->level);
@@ -104,11 +100,7 @@ void php_cmark_node_heading_write(zval *object, zval *member, zval *value, void 
 		if (zend_string_equals_literal(Z_STR_P(member), "level")) {
 			php_cmark_assert_type(
 				value, IS_LONG, 0, 
-#if PHP_VERSION_ID >= 70400
                 return &EG(uninitialized_zval),
-#else
-                return,
-#endif
                 "level expected to be int");
 			php_cmark_node_write_int(&n->h, 
 				RTS(rtc, cmark_node_set_heading_level), value, &n->level);
